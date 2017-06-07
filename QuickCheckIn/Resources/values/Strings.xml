@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="ApplicationName">Quick Check In</string>
+  <string name="OpenDrawer">Open Navigation Drawer</string>
+  <string name="CloseDrawer">Close Navigation Drawer</string>
+</resources>

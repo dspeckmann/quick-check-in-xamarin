@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:text="Episode Title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EpisodeTitleTextView"
+        android:layout_margin="12dp" />
+    <TextView
+        android:text="Episode Number"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EpisodeNumberTextView"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp" />
+    <Button
+        android:text="Check In"
+        android:enabled="false"
+        android:id="@+id/CheckInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="0dp"
+        android:padding="12dp" />
+    <Button
+        android:text="Add to History"
+        android:enabled="false"
+        android:id="@+id/AddToHistoryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="0dp"
+        android:padding="12dp" />
+    <Button
+        android:text="Add to Collection"
+        android:enabled="false"
+        android:id="@+id/AddToCollectionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="0dp"
+        android:padding="12dp" />
+    <Button
+        android:text="Add to List"
+        android:enabled="false"
+        android:id="@+id/AddToListButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="0dp"
+        android:padding="12dp" />
+</LinearLayout>

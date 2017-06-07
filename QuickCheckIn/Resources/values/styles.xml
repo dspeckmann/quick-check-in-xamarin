@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="MainTheme" parent="Theme.AppCompat">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowActionBar">false</item>
+    <item name="windowNoTitle">true</item> <!-- Which one? -->
+    <item name="windowActionBar">false</item>
+    <item name="android:colorPrimary">#F44336</item> <!-- RED 500 -->
+    <item name="android:colorPrimaryDark">#BA000D</item>
+    <!-- <item name="android:statusBarColor">@color/primaryDark</item> --> <!-- ColorPrimaryDark should suffice? Both doesn't work -->
+  </style>
+</resources>
