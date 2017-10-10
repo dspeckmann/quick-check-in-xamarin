@@ -42,7 +42,7 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             var client = TraktApiHelper.Client;
             var episode = await client.Episodes.GetEpisodeAsync(movieId.ToString(), seasonNumber, episodeNumber);
             episodeTitleTextView.Text = episode.Title;
-            episodeNumberTextView.Text = $"S{episode.SeasonNumber.Value}E{episode.Number.Value}";
+            episodeNumberTextView.Text = $"S{episode.SeasonNumber.Value}E{episode.Number.Value}"; // TODO: Add show title
 
             var checkInButton = View.FindViewById<Button>(Resource.Id.CheckInButton);
 

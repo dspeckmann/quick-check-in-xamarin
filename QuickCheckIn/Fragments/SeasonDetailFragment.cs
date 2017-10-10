@@ -42,6 +42,7 @@ namespace Dspeckmann.QuickCheckIn.Fragments
 
             var client = TraktApiHelper.Client;
             var show = await client.Shows.GetShowAsync(showId.ToString());
+            seasonTitleTextView.Text = $"{show.Title} Season {seasonNumber}";
             var season = await client.Seasons.GetSeasonAsync(showId.ToString(), seasonNumber);
             var episodeListView = View.FindViewById<ListView>(Resource.Id.EpisodeListView);
             SetUpListView(episodeListView, season.Select(episode => new TraktItem(show, episode)).ToArray());
