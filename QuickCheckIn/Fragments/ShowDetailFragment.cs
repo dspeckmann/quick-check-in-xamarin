@@ -13,12 +13,11 @@ using Android.Widget;
 using TraktApiSharp.Exceptions;
 using TraktApiSharp.Objects.Get.Shows.Seasons;
 using Dspeckmann.QuickCheckIn;
-using Dspeckmann.QuickCheckIn.Adapters;
 using Android.Support.V7.App;
 
 namespace Dspeckmann.QuickCheckIn.Fragments
 {
-    public class ShowDetailFragment : Android.Support.V4.App.Fragment
+    public class ShowDetailFragment : TraktItemListFragment
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -49,24 +48,7 @@ namespace Dspeckmann.QuickCheckIn.Fragments
 
             var seasons = await client.Seasons.GetAllSeasonsAsync(showId.ToString());
             var seasonListView = View.FindViewById<ListView>(Resource.Id.SeasonListView);
-            var seasonAdapter = new SeasonAdapter(Context, seasons.ToArray());
-            seasonListView.Adapter = seasonAdapter;
-            seasonListView.ItemClick += (sender, e) =>
-            {
-                var seasonDetailFragment = new SeasonDetailFragment();
-                var bundle = new Bundle();
-                bundle.PutInt("ShowID", showId);
-                var adapter = (SeasonAdapter)seasonListView.Adapter;
-                bundle.PutInt("SeasonNumber", seasonAdapter[e.Position].Number.Value); // HasValue?
-                seasonDetailFragment.Arguments = bundle;
-
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Hide(this);
-                transaction.Add(Resource.Id.MainFrameLayout, seasonDetailFragment);
-                transaction.SetTransition((int)FragmentTransit.FragmentOpen);
-                transaction.AddToBackStack(null);
-                transaction.Commit();
-            };
+            SetUpListView(seasonListView, seasons.Select(season => new TraktItem(show, season)).ToArray());
         }
     }
 }

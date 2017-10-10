@@ -33,6 +33,7 @@ namespace Dspeckmann.QuickCheckIn
                     var preferences = Application.Context.GetSharedPreferences("Authorization", FileCreationMode.Private);
                     var accessToken = preferences.GetString("AccessToken", null);
                     var refreshToken = preferences.GetString("RefreshToken", null);
+                    
                     if(accessToken != null)
                     {
                         if(refreshToken != null)
@@ -42,7 +43,7 @@ namespace Dspeckmann.QuickCheckIn
                         else
                         {
                             client.Authorization = TraktAuthorization.CreateWith(accessToken);
-                        }
+                        }  
                     }
                 }
 

@@ -68,7 +68,7 @@ namespace Dspeckmann.QuickCheckIn.Fragments
                 }
                 catch (TraktCheckinException)
                 {
-                    Toast.MakeText(Context, "Checking in is not possible while you are already watching something else.", ToastLength.Short).Show();
+                    Toast.MakeText(Context, "Checking in is not possible while you are already watching something else.", ToastLength.Short).Show(); // TODO: Use string resources
                 }
                 catch (Exception ex)
                 {

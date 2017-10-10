@@ -55,8 +55,10 @@ namespace Dspeckmann.QuickCheckIn
                 switch(e.Position)
                 {
                     case 0: // On Deck
+                        fragment = new OnDeckFragment();
                         break;
                     case 1: // Trending
+                        // TODO: Add TrendingFragment
                         break;
                     case 2: // Lists
                         fragment = new ListOverviewFragment();
@@ -110,11 +112,9 @@ namespace Dspeckmann.QuickCheckIn
                     currentlyWatchingLayout.Visibility = ViewStates.Gone;
                 }
             };
-
-            // TODO: Show OnDeckView instead
-            var searchFragment = new SearchFragment();
+            
             var transaction = SupportFragmentManager.BeginTransaction();
-            transaction.Add(Resource.Id.MainFrameLayout, searchFragment);
+            transaction.Add(Resource.Id.MainFrameLayout, new OnDeckFragment());
             transaction.SetTransition((int)FragmentTransit.FragmentOpen);
             // Do not add this transaction to the back stack because then the app would be empty when the user presses back
             transaction.Commit();
@@ -160,6 +160,7 @@ namespace Dspeckmann.QuickCheckIn
                     if (watching.Type == TraktSyncType.Movie)
                     {
                         currentlyWatchingTextView.Text = watching.Movie.Title;
+                        // TODO: Show notification of what is being watched right now? Allow user to toggle! Use cool Oreo style notifications?
                     }
                     else if (watching.Type == TraktSyncType.Episode)
                     {

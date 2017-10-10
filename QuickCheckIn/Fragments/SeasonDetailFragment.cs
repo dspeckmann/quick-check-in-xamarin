@@ -12,12 +12,11 @@ using Android.Views;
 using Android.Widget;
 using TraktApiSharp.Exceptions;
 using Dspeckmann.QuickCheckIn;
-using Dspeckmann.QuickCheckIn.Adapters;
 using Android.Support.V7.App;
 
 namespace Dspeckmann.QuickCheckIn.Fragments
 {
-    public class SeasonDetailFragment : Android.Support.V4.App.Fragment
+    public class SeasonDetailFragment : TraktItemListFragment
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,28 +41,10 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             seasonTitleTextView.Text = $"Show #{showId} Season #{seasonNumber}";
 
             var client = TraktApiHelper.Client;
+            var show = await client.Shows.GetShowAsync(showId.ToString());
             var season = await client.Seasons.GetSeasonAsync(showId.ToString(), seasonNumber);
-
             var episodeListView = View.FindViewById<ListView>(Resource.Id.EpisodeListView);
-            var episodeAdapter = new EpisodeAdapter(Context, season.ToArray());
-            episodeListView.Adapter = episodeAdapter;
-            episodeListView.ItemClick += (sender, e) =>
-            {
-                var selectedEpisode = episodeAdapter[e.Position];
-                var episodeDetailFragment = new EpisodeDetailFragment();
-                var bundle = new Bundle();
-                bundle.PutInt("ShowID", showId);
-                bundle.PutInt("SeasonNumber", selectedEpisode.SeasonNumber.Value);
-                bundle.PutInt("EpisodeNumber", selectedEpisode.Number.Value);
-                episodeDetailFragment.Arguments = bundle;
-
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Hide(this);
-                transaction.Add(Resource.Id.MainFrameLayout, episodeDetailFragment);
-                transaction.SetTransition((int)FragmentTransit.FragmentOpen);
-                transaction.AddToBackStack(null);
-                transaction.Commit();
-            };
+            SetUpListView(episodeListView, season.Select(episode => new TraktItem(show, episode)).ToArray());
         }
     }
 }

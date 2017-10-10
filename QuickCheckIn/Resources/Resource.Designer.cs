@@ -1693,8 +1693,8 @@ namespace Dspeckmann.QuickCheckIn
 			// aapt resource value: 0x7f0a0068
 			public const int DrawerListView = 2131361896;
 			
-			// aapt resource value: 0x7f0a0085
-			public const int EpisodeListView = 2131361925;
+			// aapt resource value: 0x7f0a0086
+			public const int EpisodeListView = 2131361926;
 			
 			// aapt resource value: 0x7f0a0057
 			public const int EpisodeNumberTextView = 2131361879;
@@ -1733,25 +1733,28 @@ namespace Dspeckmann.QuickCheckIn
 			public const int MovieYearTextView = 2131361898;
 			
 			// aapt resource value: 0x7f0a0082
-			public const int SearchEditText = 2131361922;
-			
-			// aapt resource value: 0x7f0a0089
-			public const int SearchMenuItem = 2131361929;
+			public const int OnDeckListView = 2131361922;
 			
 			// aapt resource value: 0x7f0a0083
-			public const int SearchResultListView = 2131361923;
+			public const int SearchEditText = 2131361923;
 			
-			// aapt resource value: 0x7f0a0088
-			public const int SeasonListView = 2131361928;
+			// aapt resource value: 0x7f0a008a
+			public const int SearchMenuItem = 2131361930;
 			
 			// aapt resource value: 0x7f0a0084
-			public const int SeasonTitleTextView = 2131361924;
+			public const int SearchResultListView = 2131361924;
 			
-			// aapt resource value: 0x7f0a0086
-			public const int ShowTitleTextView = 2131361926;
+			// aapt resource value: 0x7f0a0089
+			public const int SeasonListView = 2131361929;
+			
+			// aapt resource value: 0x7f0a0085
+			public const int SeasonTitleTextView = 2131361925;
 			
 			// aapt resource value: 0x7f0a0087
-			public const int ShowYearTextView = 2131361927;
+			public const int ShowTitleTextView = 2131361927;
+			
+			// aapt resource value: 0x7f0a0088
+			public const int ShowYearTextView = 2131361928;
 			
 			// aapt resource value: 0x7f0a0066
 			public const int UsernameTextView = 2131361894;
@@ -2266,25 +2269,28 @@ namespace Dspeckmann.QuickCheckIn
 			public const int notification_template_part_time = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int Search = 2130903088;
+			public const int OnDeck = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int SeasonDetail = 2130903089;
+			public const int Search = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int select_dialog_item_material = 2130903090;
+			public const int SeasonDetail = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int select_dialog_multichoice_material = 2130903091;
+			public const int select_dialog_item_material = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int select_dialog_singlechoice_material = 2130903092;
+			public const int select_dialog_multichoice_material = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int ShowDetail = 2130903093;
+			public const int select_dialog_singlechoice_material = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int support_simple_spinner_dropdown_item = 2130903094;
+			public const int ShowDetail = 2130903094;
+			
+			// aapt resource value: 0x7f030037
+			public const int support_simple_spinner_dropdown_item = 2130903095;
 			
 			static Layout()
 			{

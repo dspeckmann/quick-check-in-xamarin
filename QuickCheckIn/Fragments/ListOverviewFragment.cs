@@ -13,13 +13,12 @@ using Android.Widget;
 using TraktApiSharp.Exceptions;
 using TraktApiSharp.Objects.Get.Shows.Seasons;
 using Dspeckmann.QuickCheckIn;
-using Dspeckmann.QuickCheckIn.Adapters;
 using TraktApiSharp.Objects.Get.Users.Lists;
 using Android.Support.V7.App;
 
 namespace Dspeckmann.QuickCheckIn.Fragments
 {
-    public class ListOverviewFragment : Android.Support.V4.App.Fragment
+    public class ListOverviewFragment : TraktItemListFragment
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,38 +38,11 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             var client = TraktApiHelper.Client;
             var watchlist = await client.Users.GetWatchlistAsync("me");
             var lists = new List<TraktList>();
-            lists.Add(new TraktList() { Name = "Watchlist", ItemCount = watchlist.Items.Count(), Description = "Your Watchlist" }); // TODO: Why does ItemCount not work?
+            lists.Add(new TraktList() { Name = "Watchlist", ItemCount = watchlist.Items.Count(), Description = "Your Watchlist", Ids = new TraktListIds() { Trakt = 0 } }); // TODO: Improve?
             var customLists = await client.Users.GetCustomListsAsync("me");
             lists.AddRange(customLists);
-            var listAdapter = new ListAdapter(Context, lists.ToArray());
             var listListView = View.FindViewById<ListView>(Resource.Id.ListListView);
-            listListView.Adapter = listAdapter;
-            
-            listListView.ItemClick += (sender, e) =>
-            {
-                var listDetailFragment = new ListDetailFragment();
-                var bundle = new Bundle();
-                if(listAdapter[e.Position].Ids != null && listAdapter[e.Position].Ids.HasAnyId)
-                {
-                    var list = listAdapter[e.Position];
-                    bundle.PutBoolean("Watchlist", false);
-                    bundle.PutInt("ListID", (int)list.Ids.Trakt);
-                    bundle.PutString("ListName", list.Name);
-                }
-                else
-                {
-                    bundle.PutBoolean("Watchlist", true);
-                }
-                
-                listDetailFragment.Arguments = bundle;
-
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Hide(this);
-                transaction.Add(Resource.Id.MainFrameLayout, listDetailFragment);
-                transaction.SetTransition((int)FragmentTransit.FragmentOpen);
-                transaction.AddToBackStack(null);
-                transaction.Commit();
-            };
+            SetUpListView(listListView, lists.Select(list => new TraktItem(list)).ToArray());
         }
     }
 }

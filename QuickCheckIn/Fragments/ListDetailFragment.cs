@@ -12,7 +12,6 @@ using Android.Views;
 using Android.Widget;
 using TraktApiSharp.Exceptions;
 using Dspeckmann.QuickCheckIn;
-using Dspeckmann.QuickCheckIn.Adapters;
 using TraktApiSharp.Objects.Get.Users.Lists;
 using TraktApiSharp.Objects.Basic;
 using TraktApiSharp.Objects.Get.Watchlist;
@@ -20,7 +19,7 @@ using Android.Support.V7.App;
 
 namespace Dspeckmann.QuickCheckIn.Fragments
 {
-    public class ListDetailFragment : Android.Support.V4.App.Fragment
+    public class ListDetailFragment : TraktItemListFragment
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,35 +38,25 @@ namespace Dspeckmann.QuickCheckIn.Fragments
 
             var listTitleTextView = View.FindViewById<TextView>(Resource.Id.ListTitleTextView);
             var listItemListView = View.FindViewById<ListView>(Resource.Id.ListItemListView);
-
+            
             var client = TraktApiHelper.Client;
-            if(Arguments.GetBoolean("Watchlist"))
+            var listId = Arguments.GetInt("ListID", -1);
+            if(listId == -1)
+            {
+                // TODO: SHOW ERROR
+            }
+            else if(listId == 0)
             {
                 listTitleTextView.Text = "Watchlist";
                 var list = await client.Users.GetWatchlistAsync("me");
-                var adapter = new WatchlistItemAdapter(Context, list.ToArray());
-                listItemListView.Adapter = adapter;
-                listItemListView.ItemClick += (sender, e) =>
-                {
-                    // TODO: Determine type and start transaction
-                };
+                SetUpListView(listItemListView, list.Select(listItem => new TraktItem(listItem)).ToArray());
             }
             else
             {
-                var listId = Arguments.GetInt("ListID", -1);
                 var listName = Arguments.GetString("ListName");
-                if(listId == -1)
-                {
-                    return; // TODO: Finish? Toast?
-                }
                 listTitleTextView.Text = listName;
                 var list = await client.Users.GetCustomListItemsAsync("me", Arguments.GetInt("ListID").ToString());
-                var adapter = new ListItemAdapter(Context, list.ToArray());
-                listItemListView.Adapter = adapter;
-                listItemListView.ItemClick += (sender, e) =>
-                {
-                    // TODO: Determine type and start transaction
-                };
+                SetUpListView(listItemListView, list.Select(listItem => new TraktItem(listItem)).ToArray());
             }
         }
     }
