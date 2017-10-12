@@ -6,14 +6,13 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
-        android:text="Episode Title"
+        android:text="Loading Episode..."
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/EpisodeTitleTextView"
         android:layout_margin="12dp" />
     <TextView
-        android:text="Episode Number"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

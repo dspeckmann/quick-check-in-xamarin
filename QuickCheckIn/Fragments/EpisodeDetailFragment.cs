@@ -37,7 +37,11 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             int movieId = Arguments.GetInt("ShowID", -1);
             int seasonNumber = Arguments.GetInt("SeasonNumber", -1);
             int episodeNumber = Arguments.GetInt("EpisodeNumber", -1);
-            if (movieId == -1 || seasonNumber == 1 || episodeNumber == -1) return;
+            if (movieId == -1 || seasonNumber == 1 || episodeNumber == -1)
+            {
+                FragmentManager.PopBackStack();
+                return;
+            }
 
             var client = TraktApiHelper.Client;
             var episode = await client.Episodes.GetEpisodeAsync(movieId.ToString(), seasonNumber, episodeNumber);

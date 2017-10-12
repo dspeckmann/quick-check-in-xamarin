@@ -36,9 +36,12 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             var seasonTitleTextView = View.FindViewById<TextView>(Resource.Id.SeasonTitleTextView);
             int showId = Arguments.GetInt("ShowID", -1);
             int seasonNumber = Arguments.GetInt("SeasonNumber", -1);
-            if (showId == -1 || seasonNumber == -1) return; // Finish? Show Toast?
-
-            seasonTitleTextView.Text = $"Show #{showId} Season #{seasonNumber}";
+            if (showId == -1 || seasonNumber == -1)
+            {
+                // TODO: Show error message?
+                FragmentManager.PopBackStack();
+                return;
+            }
 
             var client = TraktApiHelper.Client;
             var show = await client.Shows.GetShowAsync(showId.ToString());

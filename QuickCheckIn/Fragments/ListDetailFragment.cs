@@ -43,7 +43,8 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             var listId = Arguments.GetInt("ListID", -1);
             if(listId == -1)
             {
-                // TODO: SHOW ERROR
+                FragmentManager.PopBackStack();
+                return;
             }
             else if(listId == 0)
             {

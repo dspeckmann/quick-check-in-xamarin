@@ -35,9 +35,11 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             var movieTitleTextView = View.FindViewById<TextView>(Resource.Id.MovieTitleTextView);
             var movieYearTextView = View.FindViewById<TextView>(Resource.Id.MovieYearTextView);
             int movieId = Arguments.GetInt("MovieID", -1);
-            if (movieId == -1) return;
-
-            movieTitleTextView.Text = "Movie #" + movieId.ToString();
+            if (movieId == -1)
+            {
+                FragmentManager.PopBackStack();
+                return;
+            }
 
             var client = TraktApiHelper.Client;
             var movie = await client.Movies.GetMovieAsync(movieId.ToString());

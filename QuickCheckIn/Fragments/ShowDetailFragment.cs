@@ -37,7 +37,11 @@ namespace Dspeckmann.QuickCheckIn.Fragments
             var showTitleTextView = View.FindViewById<TextView>(Resource.Id.ShowTitleTextView);
             var showYearTextView = View.FindViewById<TextView>(Resource.Id.ShowYearTextView);
             int showId = Arguments.GetInt("ShowID", -1);
-            if (showId == -1) return; // Finish? Show Toast? // Don't finish but rather pop back stack or whatever
+            if (showId == -1)
+            {
+                FragmentManager.PopBackStack();
+                return;
+            }
 
             showTitleTextView.Text = "Show #" + showId.ToString();
 
